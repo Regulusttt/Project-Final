@@ -1,7 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void)
+struct database {
+    char menu[100];
+    char harga[100];
+} data[100];
+
+int i;
+
+void lihatmenu()
+{
+    FILE *flm;
+    flm = fopen("listmenu.txt","r");
+    while(!feof(flm)){
+        fgets(data[i].menu,100,flm);
+        i++;
+    }
+    fclose(flm);
+    for(i=0;i<29;i++){
+    puts(data[i].menu);
+    }
+}
+
+void main()
 {
  system("color 0c");
     int pilih;
@@ -22,7 +43,7 @@ int main(void)
     {
     case 1:
         {
-
+        lihatmenu();
         }
     case 2:
         {
@@ -38,7 +59,7 @@ int main(void)
             scanf("%d", &buatorder);
             if(buatorder==1)
             {
-
+            
             }
             else if(buatorder==2)
             {
@@ -55,6 +76,9 @@ int main(void)
         }
     case 3:
         {
-
+        
         }
+    }
+    return 0;
 }
+    
