@@ -1,0 +1,30 @@
+Menu Packet : 
+1 Winger Bucket HCC/OR + 3 Mocha Float 96.5k
+3 ayam 47k
+5 Crispy Strips 73.5k
+2 Chicken Strip 33.5k
+5 Ayam 73.5k
+7 Ayam 100k
+9 Ayam 115k
+1 Krispy Burger GSS+ 1 French Fries Reg + Coca Cola 42k
+1 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium 42k
+2 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium 62k
+1 Oriental Bento + 1 Cream Soup + 1 Lovelychee Float 30k
+1 Bento Sweet Grill Soy + 1 Cream Soup + Mocha Float 30k
+
+Menu Terpisah : 
+nasi 9.5k
+chicken GSS 23.5k
+lovelychee float 8.5k
+coca-cola 11.5k
+mocha float 12.5k
+chicken strip(2pcs) 21k
+crispy strips(2) 19k
+cream sup 12.5k
+bento GSS 20k
+oriental bento 20k
+french fries reg 19k
+krispy burger GSS 24k
+winger bucket 107k
+ayam 19.5k
+
