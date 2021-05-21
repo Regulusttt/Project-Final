@@ -33,7 +33,7 @@ int main(void)
     {
         FILE*fptr;
 
-        fptr = fopen("MENU TERPISAH.txt""HARGA MENU TERPISAH.txt", "r");
+        fptr = fopen("MENU TERPISAH.txt","r");
 
         if(fptr == NULL)
         {
@@ -42,14 +42,14 @@ int main(void)
 
         while(!feof(fptr))
         {
-            fgets(nilai[i].harga,nilai[i].menu,100,fptr);
+            fgets(nilai[i].menu,100,fptr);
             i++;
             jum++;
         }
 
         for(i=0; i<jum; i++)
         {
-            printf("%s %.1f\n", nilai[i].menu,nilai[i].harga);
+            puts(nilai[i].menu);
         }
         fclose(fptr);
     }
