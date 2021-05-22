@@ -1,12 +1,12 @@
-1 Winger Bucket HCC/OR + 3 Mocha Float                      Rp96.500
-3 Aayam                                                     Rp47.000
-5 Crispy Strips                                             Rp73.500
-2 Chicken Strip                                             Rp33.500
-5 Ayam                                                      Rp73.500
-7 Ayam                                                      Rp100.000
-9 Ayam                                                      Rp115.000
-1 Krispy Burger GSS+ 1 French Fries Reg + Coca Cola         Rp42.000
-1 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium   Rp42.000
-2 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium   Rp62.000
-1 Oriental Bento + 1 Cream Soup + 1 Lovelychee Float        Rp30.000
-1 Bento Sweet Grill Soy + 1 Cream Soup + Mocha Float        Rp30.000
+1. 1 Winger Bucket HCC/OR + 3 Mocha Float                      Rp96.500
+2. 3 Aayam                                                     Rp47.000
+3. 5 Crispy Strips                                             Rp73.500 
+4. 2 Chicken Strip                                             Rp33.500
+5. 5 Ayam                                                      Rp73.500
+6. 7 Ayam                                                      Rp100.000
+7. 9 Ayam                                                      Rp115.000
+8. 1 Krispy Burger GSS+ 1 French Fries Reg + Coca Cola         Rp42.000
+9. 1 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium   Rp42.000
+10. 2 Grilled Soy Sauce Chicken + 1 Rice + 1 Coca Cola Medium   Rp62.000
+11. 1 Oriental Bento + 1 Cream Soup + 1 Lovelychee Float        Rp30.000
+12. 1 Bento Sweet Grill Soy + 1 Cream Soup + Mocha Float        Rp30.000
