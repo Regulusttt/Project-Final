@@ -31,15 +31,22 @@ int main(void)
     {
     case 1:
     {
+        int pilihmenu;
+        puts("=====================================================================================================================");
+        puts("Apakah costumer ingin memesan menu per unit atau bundle?");
+        puts("1.Per unit");
+        puts("2.Bundle");
+        puts("=====================================================================================================================");
+        printf("Masukan Pilihan : ");
+        scanf("%d", &pilihmenu);
+        if(pilihmenu==1)
+        {
             FILE*fptr;
-
             fptr = fopen("MENU TERPISAH.txt","r");
-
             if(fptr == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
             }
-
             while(!feof(fptr))
             {
                 fgets(nilai[i].menu,100,fptr);
@@ -53,6 +60,29 @@ int main(void)
             fclose(fptr);
             fflush(stdin);
         }
+        else
+        {
+          FILE*fptr1;
+          fptr1 = fopen("MENU PAKET.txt","r");
+           if(fptr1 == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+
+            while(!feof(fptr1))
+            {
+                fgets(nilai[i].menu,100,fptr1);
+                i++;
+                jum++;
+            }
+            for(i=0; i<jum; i++)
+            {
+                puts(nilai[i].menu);
+            }
+            fclose(fptr1);
+            fflush(stdin);
+        }
+    }
     case 2:
     {
         int buatorder;
