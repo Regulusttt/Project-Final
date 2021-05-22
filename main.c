@@ -151,6 +151,38 @@ void pesanpaket()
     return 0;
 }
 
+void pesanunit()
+{
+    int a,a1;
+    puts("=====Pesan Unit=====");
+    puts("1.Lihat Menu Paket");
+    puts("2.Pesan menu");
+    puts("3.Kembali");
+    printf("Masukan Pilihan : ");
+    scanf("%d",&a);
+    switch(a){
+        case 1:
+        puts("Menu Unit : ");
+            for(i=0; i<b; i++)
+            {
+                puts(nilai[i].menupisah);
+            }
+            return pesanunit();
+        break;
+        case 2:
+        printf("Pesan sesuai nomor : ");
+        scanf("%d",&a1);
+        if(a1-1>jum){
+                puts("Pilihan salah");
+                return pesanunit();
+            }
+            puts("Menu pesanan anda : ");
+            puts(nilai[a1-1].menupisah);
+            total = total + nilai[a1-1].hargapisah;
+            bayar();
+    }
+}
+
 void buatorder1()
 {
     int buatorder;
@@ -171,7 +203,7 @@ void buatorder1()
             
             break;
             case 3:
-            
+            pesanunit();
             break;
             case 4:
             return main();
@@ -221,8 +253,10 @@ int main()
     case 2:
     buatorder1();
     case 3:
-    
+    exit(0);
+    break;
     default :
+    puts("Pilihan salah");
     return main();
     }
     
