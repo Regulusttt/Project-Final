@@ -1,14 +1,14 @@
-Nasi                    Rp9.500
-Chicken GSS             Rp23.500
-Lovelychee float        Rp8.500
-Coca-cola               Rp11.500
-Mocha Float             Rp12.500
-Chicken Strip(2pcs)     Rp21.000
-Crispy Strips(2)        Rp19.000
-Cream Sup               Rp12.500
-Bento GSS               Rp20.000
-Oriental Bento          Rp20.000
-French Fries reg        Rp19.000
-Krispy Burger GSS       Rp24.000
-Winger Bucket           Rp107.000
-Ayam                    Rp19.500
+1. Nasi                    Rp9.500
+2. Chicken GSS             Rp23.500
+3. Lovelychee float        Rp8.500
+4. Coca-cola               Rp11.500
+5. Mocha Float             Rp12.500
+6. Chicken Strip(2pcs)     Rp21.000
+7. Crispy Strips(2)        Rp19.000
+8. Cream Sup               Rp12.500
+9. Bento GSS               Rp20.000
+10. Oriental Bento          Rp20.000
+11. French Fries reg        Rp19.000
+12. Krispy Burger GSS       Rp24.000
+13. Winger Bucket           Rp107.000
+14. Ayam                    Rp19.500
