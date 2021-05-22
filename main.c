@@ -11,7 +11,7 @@ typedef struct
 } data;
 data nilai[100];
 
-int n,i,j,b,jum=0;
+int total,n,i,j,b,jum=0;
 
 void lihatmenu()
 {
@@ -71,9 +71,50 @@ void inputharga()
     fclose(fh1);
 }
 
+void bayar1()
+{
+    int kembalian,c;
+    printf("Total Pesanan anda : %d\n",total);
+        printf("Bayar : ");
+        scanf("%d",&c);
+        if(c<total){
+            puts("Uang anda tidak mencukupi");
+            return bayar1();
+        }else if(c==total) {
+            puts("Uangnya pas ya!");
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }else {
+            kembalian = c - total;
+            printf("Kembalian anda : %d\n",kembalian);
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }
+}
+
+void bayar()
+{
+    int a,c;
+    puts("Apakah anda ingin memesan lagi?");
+    puts("1.iya");
+    puts("2.tidak");
+    printf("Pilihan anda : ");
+    scanf("%d",&a);
+    if(a==1){
+        return buatorder1();
+    }
+    else if(a==2){
+        bayar1();
+    }else {
+        puts("Pilihan salah");
+        return bayar();
+    }
+    
+}
+
 void pesanpaket()
 {
-    int a,b;
+    int a,b1;
     puts("=====Pesan Paket=====");
     puts("1.Lihat Menu Paket");
     puts("2.Pesan menu");
@@ -90,7 +131,15 @@ void pesanpaket()
             return pesanpaket();
             case 2:
             printf("Pesan sesuai nomor : ");
-            scanf("%d",&b);
+            scanf("%d",&b1);
+            if(b1-1>jum){
+                puts("Pilihan salah");
+                return pesanpaket();
+            }
+            puts("Menu pesanan anda : ");
+            puts(nilai[b1-1].menupaket);
+            total = total + nilai[b1-1].hargapaket;
+            bayar();
             break;
             case 3:
             return buatorder1();
