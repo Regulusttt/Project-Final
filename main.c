@@ -5,14 +5,140 @@ typedef struct
 {
     char menupaket[100];
     char menupisah[100];
+    int hargapaket;
+    int hargapisah;
     float harga;
 } data;
 data nilai[100];
 
-int n,i,j,jum=0;
+int n,i,j,b,jum=0;
 
-int main(void)
+void lihatmenu()
 {
+    i=0;
+    b=0;
+            FILE *fptr,*fptr1;
+            fptr = fopen("MENU PAKET.txt","r");
+            if(fptr == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+            while(!feof(fptr))
+            {  
+                fgets(nilai[i].menupaket,100,fptr);
+                i++;
+                jum++;
+            }
+            fclose(fptr);
+            fflush(stdin);
+          fptr1 = fopen("MENU TERPISAH.txt","r");
+           if(fptr1 == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+            i=0;
+            while(!feof(fptr1))
+            {
+                fgets(nilai[i].menupisah,100,fptr1);
+                i++;
+                b++;
+            }
+            fclose(fptr1);
+            fflush(stdin);
+}
+
+void inputharga()
+{
+    i=0;
+    int a;
+    a=0;
+    FILE *fh,*fh1;
+    fh = fopen("HARGA MENU PAKET.txt","r");
+    while(!feof(fh)){
+        fscanf(fh,"%d",&nilai[i].hargapaket);
+        i++;
+        a++;
+    }
+    fclose(fh);
+    i=0;
+    a=0;
+    fh1 = fopen("HARGA MENU TERPISAH.txt","r");
+    while(!feof(fh)){
+        fscanf(fh1,"%d",&nilai[i].hargapisah);
+        i++;
+        a++;
+    }
+    fclose(fh1);
+}
+
+void pesanpaket()
+{
+    int a,b;
+    puts("=====Pesan Paket=====");
+    puts("1.Lihat Menu Paket");
+    puts("2.Pesan menu");
+    puts("3.Kembali");
+    printf("Masukan Pilihan : ");
+    scanf("%d",&a);
+    switch(a){
+        case 1:
+        puts("Menu Paket : ");
+            for(i=0; i<jum; i++)
+            {
+                puts(nilai[i].menupaket);
+            }
+            return pesanpaket();
+            case 2:
+            printf("Pesan sesuai nomor : ");
+            scanf("%d",&b);
+            break;
+            case 3:
+            return buatorder1();
+            break;
+            default :
+            puts("Pilihan salah");
+            return pesanpaket();
+    }
+    return 0;
+}
+
+void buatorder1()
+{
+    int buatorder;
+        puts("=====================================================================================================================");
+        puts("Buat Order :");
+        puts("1.Pesan Paket");
+        puts("2.Custom Paket");
+        puts("3.Pesan Perunit");
+        puts("4.Kembali ke Menu Utama");
+        puts("=====================================================================================================================");
+        printf("Masukkan Pilihan : ");
+        scanf("%d", &buatorder);
+        switch(buatorder){
+            case 1:
+            pesanpaket();
+            break;
+            case 2:
+            
+            break;
+            case 3:
+            
+            break;
+            case 4:
+            return main();
+            break;
+            default : 
+            puts("pilihan salah");
+            return buatorder1();
+            break;
+        }
+        return 0;
+}
+
+int main()
+{
+    lihatmenu();
+    inputharga();
     system("color 0c");
     int pilih;
 
@@ -31,80 +157,25 @@ int main(void)
     switch (pilih)
     {
     case 1:
-    {
-        int a;
-            FILE *fptr,*fptr1;
-            fptr = fopen("MENU PAKET.txt","r");
-            if(fptr == NULL)
-            {
-                printf("MAAF FILE TIDAK DITEMUKAN");
-            }
-            while(!feof(fptr))
-            {  
-                fgets(nilai[i].menupaket,100,fptr);
-                i++;
-                jum++;
-            }
-            puts("Menu Paket : ");
+        puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
                 puts(nilai[i].menupaket);
             }
-            fclose(fptr);
-            fflush(stdin);
-          fptr1 = fopen("MENU TERPISAH.txt","r");
-           if(fptr1 == NULL)
-            {
-                printf("MAAF FILE TIDAK DITEMUKAN");
-            }
-            i=0;
-            while(!feof(fptr1))
-            {
-                fgets(nilai[i].menupisah,100,fptr1);
-                i++;
-                a++;
-            }
-            puts("Menu Unit");
-            for(i=0; i<a; i++)
+            puts(" ");
+            puts("Menu Unit : ");
+            for(i=0; i<b; i++)
             {
                 puts(nilai[i].menupisah);
             }
-            fclose(fptr1);
-            fflush(stdin);
-        }
+        return main();
     case 2:
-    {
-        int buatorder;
-        puts("=====================================================================================================================");
-        puts("Buat Order :");
-        puts("1.Pesan Bundle");
-        puts("2.Custom Bundle");
-        puts("3.Pesan Perunit");
-        puts("4.Kembali ke Menu Utama");
-        puts("=====================================================================================================================");
-        printf("Masukkan Pilihan : ");
-        scanf("%d", &buatorder);
-        if(buatorder==1)
-        {
-
-        }
-        else if(buatorder==2)
-        {
-
-        }
-        else if(buatorder==3)
-        {
-
-        }
-        else if(buatorder==4)
-        {
-
-        }
-    }
+    buatorder1();
     case 3:
-    {
-
+    
+    default :
+    return main();
     }
-    }
-
+    
+    return 0;
 }
