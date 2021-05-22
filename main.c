@@ -3,7 +3,8 @@
 
 typedef struct
 {
-    char menu[100];
+    char menupaket[100];
+    char menupisah[100];
     float harga;
 } data;
 data nilai[100];
@@ -31,58 +32,46 @@ int main(void)
     {
     case 1:
     {
-        int pilihmenu;
-        puts("=====================================================================================================================");
-        puts("Apakah costumer ingin memesan menu per unit atau bundle?");
-        puts("1.Per unit");
-        puts("2.Bundle");
-        puts("=====================================================================================================================");
-        printf("Masukan Pilihan : ");
-        scanf("%d", &pilihmenu);
-        if(pilihmenu==1)
-        {
-            FILE*fptr;
-            fptr = fopen("MENU TERPISAH.txt","r");
+        int a;
+            FILE *fptr,*fptr1;
+            fptr = fopen("MENU PAKET.txt","r");
             if(fptr == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
             }
             while(!feof(fptr))
-            {
-                fgets(nilai[i].menu,100,fptr);
+            {  
+                fgets(nilai[i].menupaket,100,fptr);
                 i++;
                 jum++;
             }
+            puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
-                puts(nilai[i].menu);
+                puts(nilai[i].menupaket);
             }
             fclose(fptr);
             fflush(stdin);
-        }
-        else
-        {
-          FILE*fptr1;
-          fptr1 = fopen("MENU PAKET.txt","r");
+          fptr1 = fopen("MENU TERPISAH.txt","r");
            if(fptr1 == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
             }
-
+            i=0;
             while(!feof(fptr1))
             {
-                fgets(nilai[i].menu,100,fptr1);
+                fgets(nilai[i].menupisah,100,fptr1);
                 i++;
-                jum++;
+                a++;
             }
-            for(i=0; i<jum; i++)
+            puts("Menu Unit");
+            for(i=0; i<a; i++)
             {
-                puts(nilai[i].menu);
+                puts(nilai[i].menupisah);
             }
             fclose(fptr1);
             fflush(stdin);
         }
-    }
     case 2:
     {
         int buatorder;
