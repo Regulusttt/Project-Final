@@ -1,84 +1,91 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct database {
+typedef struct
+{
     char menu[100];
-    char harga[100];
-} data[100];
+    float harga;
+} data;
+data nilai[100];
 
-int i;
+int n,i,j,jum=0;
 
-void lihatmenu()
+int main(void)
 {
-    FILE *flm;
-    flm = fopen("listmenu.txt","r");
-    while(!feof(flm)){
-        fgets(data[i].menu,100,flm);
-        i++;
-    }
-    fclose(flm);
-    for(i=0;i<29;i++){
-    puts(data[i].menu);
-    }
-}
-
-void main()
-{
- system("color 0c");
+    system("color 0c");
     int pilih;
 
 //awal :
     system("cls");
-    printf("=====================================================================================================================\n");
-    printf("\t\t\t\t  Selamat Datang di Resto Pokimane:V\n");
-    printf("\t\t\tContact Person : darryl,yanda,revi,bianca,teguh,ronaldi\n");
-    printf("=====================================================================================================================\n");
-    printf("\n1.Lihat Menu\n");
-    printf("2.Buat Order\n");
-    printf("3.Pulang\n\n");
-    printf("=====================================================================================================================\n");
+    puts("=====================================================================================================================");
+    puts("\t\t\t\t  Selamat Datang di Resto Pokimane:V");
+    puts("\t\t\tContact Person : darryl,yanda,revi,bianca,teguh,ronaldi");
+    puts("=====================================================================================================================");
+    puts("1.Lihat Menu");
+    puts("2.Buat Order");
+    puts("3.Pulang");
+    puts("=====================================================================================================================");
     printf("Masukan Pilihan : ");
     scanf("%d",&pilih);
     switch (pilih)
     {
     case 1:
-        {
-        lihatmenu();
+    {
+            FILE*fptr;
+
+            fptr = fopen("MENU TERPISAH.txt","r");
+
+            if(fptr == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+
+            while(!feof(fptr))
+            {
+                fgets(nilai[i].menu,100,fptr);
+                i++;
+                jum++;
+            }
+            for(i=0; i<jum; i++)
+            {
+                puts(nilai[i].menu);
+            }
+            fclose(fptr);
+            fflush(stdin);
         }
     case 2:
+    {
+        int buatorder;
+        puts("=====================================================================================================================");
+        puts("Buat Order :");
+        puts("1.Pesan Bundle");
+        puts("2.Custom Bundle");
+        puts("3.Pesan Perunit");
+        puts("4.Kembali ke Menu Utama");
+        puts("=====================================================================================================================");
+        printf("Masukkan Pilihan : ");
+        scanf("%d", &buatorder);
+        if(buatorder==1)
         {
-            int buatorder;
-            puts("=====================================================================================================================");
-            puts("Buat Order :");
-            puts("1.Pesan Bundle");
-            puts("2.Custom Bundle");
-            puts("3.Pesan Perunit");
-            puts("4.Kembali ke Menu Utama");
-            puts("=====================================================================================================================");
-            printf("Masukkan Pilihan : ");
-            scanf("%d", &buatorder);
-            if(buatorder==1)
-            {
-            
-            }
-            else if(buatorder==2)
-            {
 
-            }
-            else if(buatorder==3)
-            {
-
-            }
-            else if(buatorder==4)
-            {
-
-            }
         }
-    case 3:
+        else if(buatorder==2)
         {
-        
+
+        }
+        else if(buatorder==3)
+        {
+
+        }
+        else if(buatorder==4)
+        {
+
         }
     }
-    return 0;
+    case 3:
+    {
+
+    }
+    }
+
 }
-    
