@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
+int total,n,i,j,b,jum=0;
 
 void lihatmenu();
 void inputharga();
@@ -20,14 +22,14 @@ typedef struct
 } data;
 data nilai[100];
 
-int total,n,i,j,b,jum=0;
-
 void lihatmenu()
 {
     i=0;
     b=0;
+    jum=0;
+    
             FILE *fptr,*fptr1;
-            fptr = fopen("MENU PAKET.txt","r");
+            fptr = fopen("Assets\\MENU PAKET.txt","r");
             if(fptr == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -40,7 +42,7 @@ void lihatmenu()
             }
             fclose(fptr);
             fflush(stdin);
-          fptr1 = fopen("MENU TERPISAH.txt","r");
+          fptr1 = fopen("Assets\\MENU TERPISAH.txt","r");
            if(fptr1 == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -62,7 +64,7 @@ void inputharga()
     int a;
     a=0;
     FILE *fh,*fh1;
-    fh = fopen("HARGA MENU PAKET.txt","r");
+    fh = fopen("Assets\\HARGA MENU PAKET.txt","r");
     while(!feof(fh)){
         fscanf(fh,"%d",&nilai[i].hargapaket);
         i++;
@@ -71,7 +73,7 @@ void inputharga()
     fclose(fh);
     i=0;
     a=0;
-    fh1 = fopen("HARGA MENU TERPISAH.txt","r");
+    fh1 = fopen("Assets\\HARGA MENU TERPISAH.txt","r");
     while(!feof(fh)){
         fscanf(fh1,"%d",&nilai[i].hargapisah);
         i++;
@@ -83,7 +85,7 @@ void inputharga()
 void bayar1()
 {
     int kembalian,c;
-    printf("Total Pesanan anda : %d\n",total);
+    printf("Total pesanan anda : %d\n",total);
         printf("Bayar : ");
         scanf("%d",&c);
         if(c<total){
@@ -105,8 +107,8 @@ int bayar()
 {
     int a,c;
     puts("Apakah anda ingin memesan lagi?");
-    puts("1.iya");
-    puts("2.tidak");
+    puts("1.Ya");
+    puts("2.Tidak");
     printf("Pilihan anda : ");
     scanf("%d",&a);
     if(a==1){
@@ -126,18 +128,19 @@ int pesanpaket()
     int a,b1;
     puts("=====Pesan Paket=====");
     puts("1.Lihat Menu Paket");
-    puts("2.Pesan menu");
+    puts("2.Pesan Menu");
     puts("3.Kembali");
-    printf("Masukan Pilihan : ");
+    printf("Masukan pilihan : ");
     scanf("%d",&a);
     switch(a){
         case 1:
         puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
-                printf ("#%d ", i+1);
                 puts(nilai[i].menupaket);
             }
+            puts("Tekan enter untuk melanjutkan...");
+            getch();
             return pesanpaket();
             case 2:
             printf("Pesan sesuai nomor : ");
@@ -166,7 +169,7 @@ void pesanunit()
     int a,a1;
     puts("=====Pesan Unit=====");
     puts("1.Lihat Menu Paket");
-    puts("2.Pesan menu");
+    puts("2.Pesan Menu");
     puts("3.Kembali");
     printf("Masukan Pilihan : ");
     scanf("%d",&a);
@@ -237,7 +240,7 @@ int main()
     system("cls");
     puts("=====================================================================================================================");
     puts("\t\t\t\t  Selamat Datang di Resto Pokimane:V");
-    puts("\t\t\tContact Person : darryl,yanda,revi,bianca,teguh,ronaldi");
+    puts("\t\t\tContact Person : Darryl,Yanda,Revi,Bianca,Teguh,Ronaldi");
     puts("=====================================================================================================================");
     puts("1.Lihat Menu");
     puts("2.Buat Order");
@@ -251,16 +254,15 @@ int main()
         puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
-                printf("#%d ", i+1);
                 puts(nilai[i].menupaket);
             }
             puts(" ");
             puts("Menu Unit : ");
             for(i=0; i<b; i++)
             {
-                printf("#%d ", i+1);
                 puts(nilai[i].menupisah);
             }
+            puts("Tekan enter untuk melanjutkan...");
             getch();
         return main();
     case 2:
