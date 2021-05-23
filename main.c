@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void lihatmenu();
+void inputharga();
+void bayar1();
+int bayar();
+int pesanpaket();
+void pesanunit();
+int buatorder1();
+int main();
+
 typedef struct
 {
     char menupaket[100];
@@ -24,7 +33,7 @@ void lihatmenu()
                 printf("MAAF FILE TIDAK DITEMUKAN");
             }
             while(!feof(fptr))
-            {  
+            {
                 fgets(nilai[i].menupaket,100,fptr);
                 i++;
                 jum++;
@@ -92,7 +101,7 @@ void bayar1()
         }
 }
 
-void bayar()
+int bayar()
 {
     int a,c;
     puts("Apakah anda ingin memesan lagi?");
@@ -109,10 +118,10 @@ void bayar()
         puts("Pilihan salah");
         return bayar();
     }
-    
+
 }
 
-void pesanpaket()
+int pesanpaket()
 {
     int a,b1;
     puts("=====Pesan Paket=====");
@@ -126,6 +135,7 @@ void pesanpaket()
         puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
+                printf ("#%d ", i+1);
                 puts(nilai[i].menupaket);
             }
             return pesanpaket();
@@ -183,7 +193,7 @@ void pesanunit()
     }
 }
 
-void buatorder1()
+int buatorder1()
 {
     int buatorder;
         puts("=====================================================================================================================");
@@ -200,7 +210,7 @@ void buatorder1()
             pesanpaket();
             break;
             case 2:
-            
+
             break;
             case 3:
             pesanunit();
@@ -208,7 +218,7 @@ void buatorder1()
             case 4:
             return main();
             break;
-            default : 
+            default :
             puts("pilihan salah");
             return buatorder1();
             break;
@@ -241,14 +251,17 @@ int main()
         puts("Menu Paket : ");
             for(i=0; i<jum; i++)
             {
+                printf("#%d ", i+1);
                 puts(nilai[i].menupaket);
             }
             puts(" ");
             puts("Menu Unit : ");
             for(i=0; i<b; i++)
             {
+                printf("#%d ", i+1);
                 puts(nilai[i].menupisah);
             }
+            getch();
         return main();
     case 2:
     buatorder1();
@@ -259,6 +272,6 @@ int main()
     puts("Pilihan salah");
     return main();
     }
-    
+
     return 0;
 }
