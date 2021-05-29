@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-int total,n,i,j,b,jum=0;
+int total,hayyyuk,n,i,j,b,i7,i8,a1=0,jum=0;
+int tanda;
 
 void lihatmenu();
 void inputharga();
@@ -16,11 +17,185 @@ typedef struct
 {
     char menupaket[100];
     char menupisah[100];
+    char menubundle[100];
+    char menubundle1[100];
+    int keyuser;
+    int keyuser1;
+    int totalbundle;
+    int hargabundle;
     int hargapaket;
     int hargapisah;
     float harga;
 } data;
 data nilai[100];
+
+void menubundle()
+{
+    i=0;
+    jum=0;
+    FILE *fmb,*fmb1;
+            fmb = fopen("menu bundle.txt","r");
+            if(fmb == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+            while(!feof(fmb))
+            {
+                fgets(nilai[i].menubundle,100,fmb);
+                i++;
+                jum++;
+            }
+            fclose(fmb);
+            fflush(stdin);
+            i=0;
+            jum=0;
+            fmb1 = fopen("menu1 bundle.txt","r");
+            if(fmb1 == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+            while(!feof(fmb1))
+            {
+                fscanf(fmb1,"%s",&nilai[i].menubundle1);
+                i++;
+                jum++;
+            }
+            fclose(fmb1);
+            fflush(stdin);
+            for(i=0;i<jum;i++){
+                printf("%s\n",nilai[i].menubundle1);
+            }
+}
+
+void pricebun()
+{
+    i=0;
+    jum=0;
+    FILE *fhb;
+            fhb = fopen("harga bundle.txt","r");
+            if(fhb == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
+            }
+            while(!feof(fhb))
+            {
+                fscanf(fhb,"%d",&nilai[i].hargabundle);
+                i++;
+                jum++;
+            }
+            fclose(fhb);
+            fflush(stdin);
+}
+
+void paketuser()
+{
+    int a,c7;
+    if(tanda==1){
+        puts("Paket Anda : ");
+        printf("%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle;
+    }else if(tanda==2){
+        puts("Paket Anda : ");
+        printf("%d %s + %d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle+nilai[1].totalbundle;
+    }else if(tanda==3){
+        puts("Paket Anda : ");
+        printf("%d %s + %d %s +%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1,nilai[2].keyuser1,nilai[nilai[2].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle+nilai[1].totalbundle+nilai[2].totalbundle;
+    }printf("Total Harga Paket adalah : %d\n",a);
+}
+
+void tambahorder()
+{
+    a1=0;
+    int a=0;
+    printf("Tambah order sesuai nomor : ");
+    scanf("%d",&a);
+    if(a>14 || a<1){
+        puts("inputan salah");
+        return tambahorder();
+    }
+    printf("Jumlah item : ");
+    scanf("%d",&a1);
+    if(a1<1){
+        puts("Inputan salah");
+        return tambahorder();
+    }else if(a1>10){
+        puts("Max jumlah item adalah 10");
+        return tambahorder();
+    }
+    nilai[hayyyuk].keyuser1 = a1;
+    nilai[hayyyuk].keyuser = a;
+    nilai[hayyyuk].totalbundle = nilai[a-1].hargabundle*a1;
+    hayyyuk++;
+    tanda++;
+    return bpaket();
+}
+
+void bpaket()
+{
+    if(tanda==3){
+        paketuser();
+    }
+    int a;
+    puts("1.Lihat menu");
+    puts("2.Tambah order");
+    puts("3.selesai");
+    printf("Pilihan anda : ");
+    scanf("%d",&a);
+    switch(a){
+        case 1:
+        for(i=0;i<jum;i++){
+                puts(nilai[i].menubundle);
+            }
+            puts("Tekan enter untuk melanjutkan...");
+            getch();
+            return bpaket();
+        break;
+        case 2:
+        tambahorder();
+        break;
+        case 3:
+        paketuser();
+        break;
+        default :
+        puts("Pilihan salah");
+        return bpaket();
+    }
+}
+
+void bundle()
+{
+    int a;
+    menubundle();
+    puts("=====Custom Paket=====");
+    puts("1.Lihat Menu");
+    puts("2.Buat Paket");
+    puts("3.kembali");
+    printf("Ketik pilihan : ");
+    scanf("%d",&a);
+    switch(a){
+        case 1:
+        for(i=0;i<jum;i++){
+                puts(nilai[i].menubundle);
+            }
+            puts("Tekan enter untuk melanjutkan...");
+            getch();
+            return bundle();
+        break;
+        case 2:
+        pricebun();
+        bpaket();
+        break;
+        case 3:
+        return buatorder1();
+        break;
+        default:
+        puts("pilihan salah\n");
+        return bundle();
+        break;
+    }
+}
 
 void lihatmenu()
 {
@@ -29,7 +204,7 @@ void lihatmenu()
     jum=0;
     
             FILE *fptr,*fptr1;
-            fptr = fopen("Assets\\MENU PAKET.txt","r");
+            fptr = fopen("MENU PAKET.txt","r");
             if(fptr == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -42,7 +217,7 @@ void lihatmenu()
             }
             fclose(fptr);
             fflush(stdin);
-          fptr1 = fopen("Assets\\MENU TERPISAH.txt","r");
+          fptr1 = fopen("MENU TERPISAH.txt","r");
            if(fptr1 == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -64,7 +239,7 @@ void inputharga()
     int a;
     a=0;
     FILE *fh,*fh1;
-    fh = fopen("Assets\\HARGA MENU PAKET.txt","r");
+    fh = fopen("HARGA MENU PAKET.txt","r");
     while(!feof(fh)){
         fscanf(fh,"%d",&nilai[i].hargapaket);
         i++;
@@ -73,7 +248,7 @@ void inputharga()
     fclose(fh);
     i=0;
     a=0;
-    fh1 = fopen("Assets\\HARGA MENU TERPISAH.txt","r");
+    fh1 = fopen("HARGA MENU TERPISAH.txt","r");
     while(!feof(fh)){
         fscanf(fh1,"%d",&nilai[i].hargapisah);
         i++;
@@ -213,7 +388,7 @@ int buatorder1()
             pesanpaket();
             break;
             case 2:
-
+            bundle();
             break;
             case 3:
             pesanunit();
