@@ -89,7 +89,8 @@ void pricebun()
 
 void paketuser()
 {
-    int a,c7;
+    int a,c7,kembalian,c;
+    char konfirm;
     if(tanda==1){
         puts("Paket Anda : ");
         printf("%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1);
@@ -102,13 +103,43 @@ void paketuser()
         puts("Paket Anda : ");
         printf("%d %s + %d %s +%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1,nilai[2].keyuser1,nilai[nilai[2].keyuser-1].menubundle1);
         a = nilai[0].totalbundle+nilai[1].totalbundle+nilai[2].totalbundle;
-    }printf("Total Harga Paket adalah : %d\n",a);
+    }
+    printf("Total Harga Paket adalah : %d\n",a);
+    printf("Apakah anda ingin mengubah paket? (y/n) : ");
+    scanf (" %c", &konfirm);
+    if (konfirm == 'y'){
+        a=0;
+        hayyyuk = 0;
+        tanda = 0;
+        return bpaket();
+    }
+    else {
+        bayar :
+        printf("Total pesanan anda : %d\n",a);
+        printf("Bayar : ");
+        scanf("%d",&c);
+        if(c<a){
+            puts("Uang anda tidak mencukupi");
+            goto bayar;
+        }else if(c==a) {
+            puts("Uangnya pas ya!");
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }else {
+            kembalian = c - a;
+            printf("Kembalian anda : %d\n",kembalian);
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }
+    }
 }
 
 int tambahorder()
 {
+    neworder:
     a1=0;
     int a=0;
+    char konfirm;
     printf("Tambah order sesuai nomor : ");
     scanf("%d",&a);
     if(a>14 || a<1){
@@ -124,6 +155,12 @@ int tambahorder()
         puts("Max jumlah item adalah 10");
         return tambahorder();
     }
+    printf ("Apa menu yang ada pesan sudah benar? (y/n) : ");
+    scanf(" %c", &konfirm);
+    if (konfirm == 'n'){
+        return tambahorder();
+        goto neworder;
+    } else 
     nilai[hayyyuk].keyuser1 = a1;
     nilai[hayyyuk].keyuser = a;
     nilai[hayyyuk].totalbundle = nilai[a-1].hargabundle*a1;
@@ -132,15 +169,15 @@ int tambahorder()
     return bpaket();
 }
 
-int bpaket()
-{
+int bpaket() {
+bundlepaket : 
     if(tanda==3){
         paketuser();
     }
     int a;
     puts("1.Lihat menu");
     puts("2.Tambah order");
-    puts("3.selesai");
+    puts("3.Selesai");
     printf("Pilihan anda : ");
     scanf("%d",&a);
     switch(a){
