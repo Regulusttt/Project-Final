@@ -204,7 +204,7 @@ void lihatmenu()
     jum=0;
     
             FILE *fptr,*fptr1;
-            fptr = fopen("MENU PAKET.txt","r");
+            fptr = fopen("Assets//MENU PAKET.txt","r");
             if(fptr == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -217,7 +217,7 @@ void lihatmenu()
             }
             fclose(fptr);
             fflush(stdin);
-          fptr1 = fopen("MENU TERPISAH.txt","r");
+          fptr1 = fopen("Assets//MENU TERPISAH.txt","r");
            if(fptr1 == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -239,7 +239,7 @@ void inputharga()
     int a;
     a=0;
     FILE *fh,*fh1;
-    fh = fopen("HARGA MENU PAKET.txt","r");
+    fh = fopen("Assets//HARGA MENU PAKET.txt","r");
     while(!feof(fh)){
         fscanf(fh,"%d",&nilai[i].hargapaket);
         i++;
@@ -248,7 +248,7 @@ void inputharga()
     fclose(fh);
     i=0;
     a=0;
-    fh1 = fopen("HARGA MENU TERPISAH.txt","r");
+    fh1 = fopen("Assets//HARGA MENU TERPISAH.txt","r");
     while(!feof(fh)){
         fscanf(fh1,"%d",&nilai[i].hargapisah);
         i++;
