@@ -34,7 +34,7 @@ void menubundle()
     i=0;
     jum=0;
     FILE *fmb,*fmb1;
-            fmb = fopen("menu bundle.txt","r");
+            fmb = fopen("Assets//menu bundle.txt","r");
             if(fmb == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -49,7 +49,7 @@ void menubundle()
             fflush(stdin);
             i=0;
             jum=0;
-            fmb1 = fopen("menu1 bundle.txt","r");
+            fmb1 = fopen("Assets//menu1 bundle.txt","r");
             if(fmb1 == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -72,7 +72,7 @@ void pricebun()
     i=0;
     jum=0;
     FILE *fhb;
-            fhb = fopen("harga bundle.txt","r");
+            fhb = fopen("Assets//harga bundle.txt","r");
             if(fhb == NULL)
             {
                 printf("MAAF FILE TIDAK DITEMUKAN");
@@ -105,7 +105,7 @@ void paketuser()
     }printf("Total Harga Paket adalah : %d\n",a);
 }
 
-void tambahorder()
+int tambahorder()
 {
     a1=0;
     int a=0;
@@ -132,7 +132,7 @@ void tambahorder()
     return bpaket();
 }
 
-void bpaket()
+int bpaket()
 {
     if(tanda==3){
         paketuser();
@@ -164,7 +164,7 @@ void bpaket()
     }
 }
 
-void bundle()
+int bundle()
 {
     int a;
     menubundle();
