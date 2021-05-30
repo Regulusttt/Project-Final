@@ -363,7 +363,7 @@ int bayar()
 
 int pesanpaket()
 {
-    int a,b1;
+    int a,b1=0,e4=0;
     puts("=====Pesan Paket=====");
     puts("1.Lihat Menu Paket");
     puts("2.Pesan Menu");
@@ -383,13 +383,19 @@ int pesanpaket()
             case 2:
             printf("Pesan sesuai nomor : ");
             scanf("%d",&b1);
+            printf("Masukan Jumlah : ");
+            scanf("%d",&e4);
             if(b1-1>jum){
                 puts("Pilihan salah");
                 return pesanpaket();
+            }else if(e4<1){
+                puts("Error!");
+                return pesanpaket();
             }
             puts("Menu pesanan anda : ");
+            printf("%d x ",e4);
             puts(nilai[b1-1].menupaket);
-            total = total + nilai[b1-1].hargapaket;
+            total = total + (nilai[b1-1].hargapaket*e4);
             bayar();
             break;
             case 3:
@@ -404,7 +410,7 @@ int pesanpaket()
 
 void pesanunit()
 {
-    int a,a1;
+    int a,a7=0,e4=0;
     puts("=====Pesan Unit=====");
     puts("1.Lihat Menu Paket");
     puts("2.Pesan Menu");
@@ -422,14 +428,20 @@ void pesanunit()
         break;
         case 2:
         printf("Pesan sesuai nomor : ");
-        scanf("%d",&a1);
-        if(a1-1>jum){
+        scanf("%d",&a7);
+        printf("Masukan jumlah : ");
+        scanf("%d",&e4);
+        if(a7-1>jum){
                 puts("Pilihan salah");
+                return pesanunit();
+            }else if(e4<1){
+                puts("Error!");
                 return pesanunit();
             }
             puts("Menu pesanan anda : ");
-            puts(nilai[a1-1].menupisah);
-            total = total + nilai[a1-1].hargapisah;
+            printf("%d x ",e4);
+            puts(nilai[a7-1].menupisah);
+            total = total + (nilai[a7-1].hargapisah*e4);
             bayar();
             case 3:
             return buatorder1();
