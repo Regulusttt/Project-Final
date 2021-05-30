@@ -109,7 +109,7 @@ int paketuser()
     printf("Total Harga Paket adalah : %d\n",a);
     printf("Apakah anda ingin memesan paket? (y/n) : ");
     scanf (" %c", &konfirm);
-    if (konfirm == 'y'){
+    if (konfirm == 'n'){
         a=0;
         hayyyuk = 0;
         tanda = 0;
