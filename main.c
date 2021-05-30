@@ -96,13 +96,13 @@ void bpaket()
     printf("Pilihan anda : ");
     scanf("%d",&a);
     switch(a){
-        case 1;
+        case 1 :
         menubundle();
         break;
-        case 2;
+        case 2 :
         tambahorder();
         break;
-        case 3;
+        case 3 :
         
         break;
         default :
