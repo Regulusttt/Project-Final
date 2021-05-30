@@ -86,12 +86,17 @@ void pricebun()
 
 int paketuser()
 {
+    
     int a,c7,kembalian,c;
     char konfirm;
     if(tanda==1){
         puts("Paket Anda : ");
         printf("%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1);
         a = nilai[0].totalbundle;
+        if(tanda==1 && a1==1){
+        puts("Error! Anda bisa memesan di menu perunit...");
+        return bundle();
+    }
     }else if(tanda==2){
         puts("Paket Anda : ");
         printf("%d %s + %d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1);
@@ -102,7 +107,7 @@ int paketuser()
         a = nilai[0].totalbundle+nilai[1].totalbundle+nilai[2].totalbundle;
     }
     printf("Total Harga Paket adalah : %d\n",a);
-    printf("Apakah anda ingin mengubah paket? (y/n) : ");
+    printf("Apakah anda ingin memesan paket? (y/n) : ");
     scanf (" %c", &konfirm);
     if (konfirm == 'y'){
         a=0;
@@ -188,9 +193,6 @@ int bpaket() {
 bundlepaket : 
     if(tanda==3){
         paketuser();
-    }else if(tanda==1 && a1==1){
-        puts("Error! Anda bisa memesan di menu perunit...");
-        return bundle();
     }
     int a;
     puts("1.Lihat menu");
@@ -429,6 +431,12 @@ void pesanunit()
             puts(nilai[a1-1].menupisah);
             total = total + nilai[a1-1].hargapisah;
             bayar();
+            case 3:
+            return buatorder1();
+            break;
+            default:
+            puts("Pilihan salah");
+            return pesanunit();
     }
 }
 
