@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-int total,n,i,j,b,i7,i8,jum=0;
+int total,hayyyuk,n,i,j,b,i7,i8,a1=0,jum=0;
+int tanda,sum;
 
 void lihatmenu();
 void inputharga();
@@ -17,6 +18,10 @@ typedef struct
     char menupaket[100];
     char menupisah[100];
     char menubundle[100];
+    char menubundle1[100];
+    int keyuser;
+    int keyuser1;
+    int totalbundle;
     int hargabundle;
     int hargapaket;
     int hargapisah;
@@ -28,7 +33,7 @@ void menubundle()
 {
     i=0;
     jum=0;
-    FILE *fmb;
+    FILE *fmb,*fmb1;
             fmb = fopen("menu bundle.txt","r");
             if(fmb == NULL)
             {
@@ -42,12 +47,21 @@ void menubundle()
             }
             fclose(fmb);
             fflush(stdin);
-            for(i=0;i<jum;i++){
-                puts(nilai[i].menubundle);
+            i=0;
+            jum=0;
+            fmb1 = fopen("menu1 bundle.txt","r");
+            if(fmb1 == NULL)
+            {
+                printf("MAAF FILE TIDAK DITEMUKAN");
             }
-            puts("Tekan enter untuk melanjutkan...");
-            getch();
-            return bundle();
+            while(!feof(fmb1))
+            {
+                fscanf(fmb1,"%s",&nilai[i].menubundle1);
+                i++;
+                jum++;
+            }
+            fclose(fmb1);
+            fflush(stdin);
 }
 
 void pricebun()
@@ -70,9 +84,65 @@ void pricebun()
             fflush(stdin);
 }
 
-void tambahorder()
+int paketuser()
 {
-    int a=0,a1=0;
+    
+    int a,c7,kembalian,c;
+    char konfirm;
+    if(tanda==1){
+        puts("Paket Anda : ");
+        printf("%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle;
+        if(tanda==1 && a1==1){
+        puts("Error! Anda bisa memesan di menu perunit...");
+        return bundle();
+    }
+    }else if(tanda==2){
+        puts("Paket Anda : ");
+        printf("%d %s + %d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle+nilai[1].totalbundle;
+    }else if(tanda==3){
+        puts("Paket Anda : ");
+        printf("%d %s + %d %s +%d %s\n",nilai[0].keyuser1,nilai[nilai[0].keyuser-1].menubundle1,nilai[1].keyuser1,nilai[nilai[1].keyuser-1].menubundle1,nilai[2].keyuser1,nilai[nilai[2].keyuser-1].menubundle1);
+        a = nilai[0].totalbundle+nilai[1].totalbundle+nilai[2].totalbundle;
+    }
+    printf("Total Harga Paket adalah : %d\n",a);
+    printf("Apakah anda ingin memesan paket? (y/n) : ");
+    scanf (" %c", &konfirm);
+    if (konfirm == 'y'){
+        a=0;
+        hayyyuk = 0;
+        tanda = 0;
+        return bpaket();
+    }
+    else {
+        bayar :
+        printf("Total pesanan anda : %d\n",a);
+        printf("Bayar : ");
+        scanf("%d",&c);
+        if(c<a){
+            puts("Uang anda tidak mencukupi");
+            goto bayar;
+        }else if(c==a) {
+            puts("Uangnya pas ya!");
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }else {
+            kembalian = c - a;
+            printf("Kembalian anda : %d\n",kembalian);
+            puts("Terima kasih telah datang ke resto kami!");
+            exit(0);
+        }
+    }
+}
+
+int tambahorder()
+{
+    pricebun();
+    neworder:
+    a1=0;
+    int a=0;
+    char konfirm;
     printf("Tambah order sesuai nomor : ");
     scanf("%d",&a);
     if(a>14 || a<1){
@@ -84,26 +154,70 @@ void tambahorder()
     if(a1<1){
         puts("Inputan salah");
         return tambahorder();
+    }else if(a1>10){
+        puts("Max jumlah item adalah 10");
+        return tambahorder();
+    }else if(a==2 && a1>1){
+        nilai[a-1].hargabundle = nilai[a-1].hargabundle - 3500;
+    }else if(a==6 || a==7 || a==8 && a1>1){
+        nilai[a-1].hargabundle = nilai[a-1].hargabundle - 4000;
+    }if(a==14 && a1>4){
+        nilai[a-1].hargabundle = nilai[a-1].hargabundle - 1000;
+        if(a1>6){
+        nilai[a-1].hargabundle = nilai[a-1].hargabundle - 500;
+        if(a1>8){
+        nilai[a-1].hargabundle = nilai[a-1].hargabundle - 1500;
     }
+    }
+    }
+    printf ("Apa menu yang ada pesan sudah benar? (y/n) : ");
+    scanf(" %c", &konfirm);
+    if (konfirm == 'y'){
+        return tambahorder();
+        goto neworder;
+    } else 
+    sum += a1;
+    if(sum>10){
+        puts("Max Jumlah item adalah 10");
+        return paketuser();
+    }
+    nilai[hayyyuk].keyuser1 = a1;
+    nilai[hayyyuk].keyuser = a;
+    nilai[hayyyuk].totalbundle = nilai[a-1].hargabundle*a1;
+    hayyyuk++;
+    tanda++;
+    return bpaket();
 }
 
-void bpaket()
-{
+int bpaket() {
+bundlepaket : 
+    if(tanda==3){
+        paketuser();
+    }
     int a;
     puts("1.Lihat menu");
     puts("2.Tambah order");
-    puts("3.selesai");
+    puts("3.Selesai");
+    puts("4.kembali");
     printf("Pilihan anda : ");
     scanf("%d",&a);
     switch(a){
-        case 1 :
-        menubundle();
+        case 1:
+        for(i=0;i<jum;i++){
+                puts(nilai[i].menubundle);
+            }
+            puts("Tekan enter untuk melanjutkan...");
+            getch();
+            return bpaket();
         break;
-        case 2 :
+        case 2:
         tambahorder();
         break;
-        case 3 :
-        
+        case 3:
+        paketuser();
+        break;
+        case 4:
+        bundle();
         break;
         default :
         puts("Pilihan salah");
@@ -111,9 +225,12 @@ void bpaket()
     }
 }
 
-void bundle()
+int bundle()
 {
+    hayyyuk=0;
+    tanda=0;
     int a;
+    menubundle();
     puts("=====Custom Paket=====");
     puts("1.Lihat Menu");
     puts("2.Buat Paket");
@@ -122,11 +239,16 @@ void bundle()
     scanf("%d",&a);
     switch(a){
         case 1:
-        menubundle();
+        for(i=0;i<jum;i++){
+                puts(nilai[i].menubundle);
+            }
+            puts("Tekan enter untuk melanjutkan...");
+            getch();
+            return bundle();
         break;
         case 2:
         pricebun();
-        
+        bpaket();
         break;
         case 3:
         return buatorder1();
@@ -241,7 +363,7 @@ int bayar()
 
 int pesanpaket()
 {
-    int a,b1;
+    int a,b1=0,e4=0;
     puts("=====Pesan Paket=====");
     puts("1.Lihat Menu Paket");
     puts("2.Pesan Menu");
@@ -261,13 +383,19 @@ int pesanpaket()
             case 2:
             printf("Pesan sesuai nomor : ");
             scanf("%d",&b1);
+            printf("Masukan Jumlah : ");
+            scanf("%d",&e4);
             if(b1-1>jum){
                 puts("Pilihan salah");
                 return pesanpaket();
+            }else if(e4<1){
+                puts("Error!");
+                return pesanpaket();
             }
             puts("Menu pesanan anda : ");
+            printf("%d x ",e4);
             puts(nilai[b1-1].menupaket);
-            total = total + nilai[b1-1].hargapaket;
+            total = total + (nilai[b1-1].hargapaket*e4);
             bayar();
             break;
             case 3:
@@ -282,7 +410,7 @@ int pesanpaket()
 
 void pesanunit()
 {
-    int a,a1;
+    int a,a7=0,e4=0;
     puts("=====Pesan Unit=====");
     puts("1.Lihat Menu Paket");
     puts("2.Pesan Menu");
@@ -300,15 +428,27 @@ void pesanunit()
         break;
         case 2:
         printf("Pesan sesuai nomor : ");
-        scanf("%d",&a1);
-        if(a1-1>jum){
+        scanf("%d",&a7);
+        printf("Masukan jumlah : ");
+        scanf("%d",&e4);
+        if(a7-1>jum){
                 puts("Pilihan salah");
+                return pesanunit();
+            }else if(e4<1){
+                puts("Error!");
                 return pesanunit();
             }
             puts("Menu pesanan anda : ");
-            puts(nilai[a1-1].menupisah);
-            total = total + nilai[a1-1].hargapisah;
+            printf("%d x ",e4);
+            puts(nilai[a7-1].menupisah);
+            total = total + (nilai[a7-1].hargapisah*e4);
             bayar();
+            case 3:
+            return buatorder1();
+            break;
+            default:
+            puts("Pilihan salah");
+            return pesanunit();
     }
 }
 
@@ -390,6 +530,5 @@ int main()
     puts("Pilihan salah");
     return main();
     }
-
     return 0;
 }

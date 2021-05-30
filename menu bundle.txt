@@ -1,14 +1,14 @@
-1. Nasi                    
-2. Chicken GSS             
-3. Lovelychee float        
-4. Coca-cola               
-5. Mocha Float             
-6. Chicken Strip(2pcs)     
-7. Crispy Strips(2pcs)        
-8. Cream Sup               
-9. Bento GSS               
-10. Oriental Bento          
-11. French Fries reg        
-12. Krispy Burger GSS       
-13. Winger Bucket           
-14. Ayam                    
+#1  Nasi                    
+#2  Chicken GSS             
+#3  Lovelychee float        
+#4  Coca-cola               
+#5  Mocha Float             
+#6  Chicken Strip(2pcs)     
+#7  Crispy Strips(2pcs)        
+#8  Cream Sup               
+#9  Bento GSS               
+#10 Oriental Bento          
+#11 French Fries reg        
+#12 Krispy Burger GSS       
+#13 Winger Bucket           
+#14 Ayam                    
