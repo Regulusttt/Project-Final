@@ -172,7 +172,7 @@ int tambahorder()
     }
     printf ("Apa menu yang ada pesan sudah benar? (y/n) : ");
     scanf(" %c", &konfirm);
-    if (konfirm == 'n'){
+    if (konfirm == 'y'){
         return tambahorder();
         goto neworder;
     } else 
