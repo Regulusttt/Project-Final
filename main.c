@@ -412,7 +412,7 @@ void pesanunit()
 {
     int a,a7=0,e4=0;
     puts("=====Pesan Unit=====");
-    puts("1.Lihat Menu Paket");
+    puts("1.Lihat Menu");
     puts("2.Pesan Menu");
     puts("3.Kembali");
     printf("Masukan Pilihan : ");
