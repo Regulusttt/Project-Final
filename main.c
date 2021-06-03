@@ -4,6 +4,12 @@
 int total,hayyyuk,n,i,j,b,i7,i8,a1=0,jum=0;
 int tanda,sum;
 
+void menubundle();
+void pricebun();
+int paketuser();
+int tambahorder();
+int bpaket();
+int bundle();
 void lihatmenu();
 void inputharga();
 void bayar1();
@@ -11,7 +17,6 @@ int bayar();
 int pesanpaket();
 void pesanunit();
 int buatorder1();
-int main();
 
 typedef struct
 {
@@ -385,7 +390,7 @@ int pesanpaket()
             scanf("%d",&b1);
             printf("Masukan Jumlah : ");
             scanf("%d",&e4);
-            if(b1-1>jum){
+            if(b1-1>=jum){
                 puts("Pilihan salah");
                 return pesanpaket();
             }else if(e4<1){
@@ -431,7 +436,7 @@ void pesanunit()
         scanf("%d",&a7);
         printf("Masukan jumlah : ");
         scanf("%d",&e4);
-        if(a7-1>jum){
+        if(a7-1>=b){
                 puts("Pilihan salah");
                 return pesanunit();
             }else if(e4<1){
